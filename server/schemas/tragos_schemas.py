@@ -20,5 +20,5 @@ class TragoResponse(BaseModel):
     title: str
     status: str = 'Nuevo'
     description: str = ''
-    created_at: datetime
-    update_at: datetime
+    created_at: datetime = datetime.now()
+    update_at: datetime = datetime.now() 
