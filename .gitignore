@@ -1,0 +1,8 @@
+# Env
+venv
+env
+
+# Python file
+**/__pycache__
+
+*.json
