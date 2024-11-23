@@ -1,19 +1,18 @@
 from typing import List
 
-from fastapi import HTTPException
-
 
 from server.schemas.tragos_schemas import NuevoTragoRequest, TragoResponse, TragoRequest
 from server.exception import BaseHTTPException, InternalServerError, NotFound
+from server.service import TragosService
 
 
 class TragosController:
     def __init__(self):
-        pass
+        self.service = TragosService()
 
     def create(self, nuevo_trago: NuevoTragoRequest) -> TragoResponse:
         try:
-            return TragoResponse(id=1, **nuevo_trago.model_dump())
+            return self.service.create(nuevo_trago)
         except BaseHTTPException as ex:
             raise ex
         except Exception:
@@ -21,7 +20,7 @@ class TragosController:
 
     def get_list(self, limit: int, offset: int) -> List[TragoResponse]:
         try:
-            return
+            return self.service.get_list(limit, offset)
         except BaseHTTPException as ex:
             raise ex
         except Exception:
@@ -29,7 +28,7 @@ class TragosController:
 
     def get_by_id(self, id: int) -> TragoResponse:
         try:
-            raise NotFound(f'Trago #{id} no encontrado')
+            return self.service.get_by_id(id)
         except BaseHTTPException as ex:
             raise ex
         except Exception:
@@ -37,7 +36,7 @@ class TragosController:
 
     def update(self, id, new_data) -> TragoResponse:
         try:
-            return TragoResponse(id=id, **new_data.model_dump())
+            return self.service.update(id, new_data)
         except BaseHTTPException as ex:
             raise ex
         except Exception:
@@ -45,7 +44,7 @@ class TragosController:
 
     def delete(self, id: int) -> None:
         try:
-            return
+            self.service.delete(id)
         except BaseHTTPException as ex:
             raise ex
         except Exception:
