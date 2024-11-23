@@ -1,4 +1,4 @@
-
+from server.external_interface import tragos_api_client
 
 class TragosRepository:
     last_id: int = 0
@@ -21,6 +21,7 @@ class TragosRepository:
         first_index = min(db_size, offset)
         last_index = min(db_size, (first_index + limit))
         return TragosRepository.fake_db[first_index:last_index]
+        # return tragos_api_client.get_list(limit, offset)
 
     def get_by_id(self, id: int) -> dict | None:
         for trago in TragosRepository.fake_db:
