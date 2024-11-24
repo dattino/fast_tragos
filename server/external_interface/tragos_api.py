@@ -11,7 +11,7 @@ logger = logging.getLogger(__name__)
 class TragosApi:
     def __init__(self):
         self.client = requests.Session()
-        self.base_url = app_settings.PROJECTS_API
+        self.base_url = app_settings.TRAGOS_API
 
     def get_list(self, limit: int, offset: int):
         url = self.base_url + '/projects'
