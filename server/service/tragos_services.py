@@ -24,7 +24,7 @@ class TragosService:
             raise NotFound(f'Trago con id #{id} no encontrado')
         return TragoResponse(**trago)
 
-    def update(self, id, new_data) -> TragoResponse:
+    def update(self, id, new_data: TragoRequest) -> TragoResponse:
         updated_trago = self.trago_repo.update(
             id, new_data.model_dump(exclude_none=True)
         )
