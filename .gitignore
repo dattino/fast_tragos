@@ -12,4 +12,4 @@ env
 
 #Logs
 Logs
-log.txt
+*.logs
